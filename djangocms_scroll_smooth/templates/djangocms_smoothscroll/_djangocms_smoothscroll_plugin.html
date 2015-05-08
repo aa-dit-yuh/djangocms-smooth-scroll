@@ -1,0 +1,17 @@
+{% load cms_tags static %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+<script src="{% static 'djangocms_smoothscroll/js/smooth-scroll.js' %}"></script>
+<script>
+    smoothScroll.init({
+        speed: {{ instance.speed }},
+        offset: 0,
+        updateURL: true,
+        callbackBefore: function ( toggle, anchor ) {},
+        callbackAfter: function ( toggle, anchor ) {}
+    });
+</script>
+{% endaddtoblock %}
+
+<a data-scroll data-options='{ "easing": "{{ instance.easing }}" }' href="#{{ instance.scrollto_id }}">{{ instance.display_text }}</a>
