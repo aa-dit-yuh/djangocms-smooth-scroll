@@ -1,8 +1,12 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+
 from cms.models import CMSPlugin
+
 from .utils import EASING_CHOICES
 
 
+@python_2_unicode_compatible
 class SmoothScrollPluginModel(CMSPlugin):
 
     easing = models.CharField(
@@ -34,5 +38,5 @@ class SmoothScrollPluginModel(CMSPlugin):
         null=True,
     )
 
-    def __unicode__(self):
-        return u'%s:%s:%s' % (self.gist_user, self.gist_id, self.filename)
+    def __str__(self):
+        return _(''.join('#', self.scrollto_id))
